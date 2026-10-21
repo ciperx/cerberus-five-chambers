@@ -1,0 +1,20 @@
+{
+  "name": "cerberus-five-chambers",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Deterministic reference airlock plus a fixture driven node:test suite for the five Cerberus chambers: identity, trust score, intent, SOUL handshake, session token.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "tsx --test test/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "license": "MIT"
+}

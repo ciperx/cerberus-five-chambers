@@ -1,0 +1,15 @@
+{
+  "agentId": "ozma-ranger-01",
+  "chain": "base",
+  "issuedAt": "2026-10-21T12:00:00.000Z",
+  "now": "2026-10-21T12:01:00.000Z",
+  "cases": [
+    { "name": "A1 a correctly signed claim is accepted", "expect": "OK" },
+    { "name": "A2 a signature from a foreign key is refused", "expect": "IDENTITY_SIGNATURE", "variant": "foreign_signature" },
+    { "name": "A3 a statement naming another agent is refused", "expect": "IDENTITY_STATEMENT", "variant": "foreign_statement" },
+    { "name": "A4 a claim older than the window is refused", "expect": "IDENTITY_STALE", "variant": "stale" },
+    { "name": "A5 an unknown chain is refused", "expect": "IDENTITY_CHAIN", "variant": "unknown_chain" },
+    { "name": "A6 a malformed agent id is refused", "expect": "IDENTITY_MALFORMED", "variant": "bad_agent_id" },
+    { "name": "A7 a claim without a signature is refused", "expect": "IDENTITY_MALFORMED", "variant": "missing_signature" }
+  ]
+}

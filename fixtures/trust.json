@@ -1,0 +1,25 @@
+{
+  "subject": "ozma-ranger-01",
+  "now": "2026-10-21T12:00:00.000Z",
+  "policy": {
+    "attestors": ["lax-node-1", "lax-node-2", "kognai-ceo"],
+    "minScore": 70,
+    "minSessions": 2,
+    "maxSlashes": 0,
+    "windowDays": 30,
+    "slashPenalty": 25
+  },
+  "attestations": [
+    { "attestor": "lax-node-1", "subject": "ozma-ranger-01", "kind": "session", "score": 90, "issuedAt": "2026-10-20T10:00:00.000Z" },
+    { "attestor": "lax-node-2", "subject": "ozma-ranger-01", "kind": "session", "score": 80, "issuedAt": "2026-10-20T11:00:00.000Z" },
+    { "attestor": "kognai-ceo", "subject": "ozma-ranger-01", "kind": "review", "score": 85, "issuedAt": "2026-10-19T09:00:00.000Z" }
+  ],
+  "cases": [
+    { "name": "B1 three fresh attestations clear the floor", "expect": "OK" },
+    { "name": "B2 a score under the floor is refused", "expect": "TRUST_SCORE_LOW", "variant": "low_score" },
+    { "name": "B3 too few attested sessions is refused", "expect": "TRUST_TOO_FEW_SESSIONS", "variant": "few_sessions" },
+    { "name": "B4 a slash beyond the limit is refused", "expect": "TRUST_SLASHED", "variant": "slashed" },
+    { "name": "B5 only allowlisted attestors count", "expect": "TRUST_NO_ATTESTATIONS", "variant": "foreign_attestors" },
+    { "name": "B6 attestations older than the window are ignored", "expect": "TRUST_NO_ATTESTATIONS", "variant": "stale_attestations" }
+  ]
+}

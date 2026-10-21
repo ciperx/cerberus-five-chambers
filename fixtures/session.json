@@ -1,0 +1,22 @@
+{
+  "now": "2026-10-21T12:05:00.000Z",
+  "secret": "fixture-secret-not-a-production-key",
+  "audience": "kognai-airlock",
+  "maxTtlSeconds": 900,
+  "claims": {
+    "sub": "ozma-ranger-01",
+    "sid": "sess-7c19a2",
+    "aud": "kognai-airlock",
+    "iatOffsetSeconds": -300,
+    "ttlSeconds": 900
+  },
+  "cases": [
+    { "name": "E1 an issued token verifies for the right audience", "expect": "OK" },
+    { "name": "E2 a tampered payload is refused", "expect": "SESSION_SIGNATURE", "variant": "tampered" },
+    { "name": "E3 an expired token is refused", "expect": "SESSION_EXPIRED", "variant": "expired" },
+    { "name": "E4 a token for another audience is refused", "expect": "SESSION_AUDIENCE", "variant": "wrong_audience" },
+    { "name": "E5 an alg none header is refused", "expect": "SESSION_ALG", "variant": "alg_none" },
+    { "name": "E6 a ttl above the ceiling is refused", "expect": "SESSION_TTL", "variant": "long_ttl" },
+    { "name": "E7 a malformed token is refused", "expect": "SESSION_MALFORMED", "variant": "malformed" }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "now": "2026-10-21T12:00:05.000Z",
+  "challenge": {
+    "nonce": "5b1f9d3c7a2e6408",
+    "issuedAt": "2026-10-21T12:00:00.000Z"
+  },
+  "ttlMs": 60000,
+  "cases": [
+    { "name": "D1 a fresh nonce signed with a session key is accepted", "expect": "OK" },
+    { "name": "D2 a response for another nonce is refused", "expect": "SOUL_NONCE", "variant": "wrong_nonce" },
+    { "name": "D3 a signature over the wrong session key is refused", "expect": "SOUL_SIGNATURE", "variant": "wrong_signature" },
+    { "name": "D4 reusing the identity key as the session key is refused", "expect": "SOUL_KEY_REUSE", "variant": "key_reuse" },
+    { "name": "D5 an expired challenge is refused", "expect": "SOUL_STALE", "variant": "stale" },
+    { "name": "D6 a response without a signature is refused", "expect": "SOUL_MALFORMED", "variant": "missing_signature" }
+  ]
+}

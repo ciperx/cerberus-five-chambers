@@ -1,0 +1,27 @@
+{
+  "now": "2026-10-21T12:05:00.000Z",
+  "audience": "kognai-airlock",
+  "secret": "fixture-secret-not-a-production-key",
+  "agentId": "ozma-ranger-01",
+  "session": {
+    "sub": "ozma-ranger-01",
+    "sid": "sess-airlock-01",
+    "iatOffsetSeconds": -60,
+    "ttlSeconds": 600
+  },
+  "trust": {
+    "attestors": ["lax-node-1", "lax-node-2", "kognai-ceo"],
+    "minScore": 70,
+    "minSessions": 2,
+    "maxSlashes": 0,
+    "windowDays": 30,
+    "slashPenalty": 25
+  },
+  "intent": {
+    "action": "post.bid",
+    "resource": "https://lax.kognai.ai/registry/jobs/8e7860f8-70a1-4bb3-8c0d-5b5f0a6f0001/bids",
+    "budgetUsdc": 40,
+    "nonce": "1c8d9f0a4b7e2356",
+    "issuedAtOffsetSeconds": -30
+  }
+}

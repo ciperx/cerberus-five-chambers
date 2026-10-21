@@ -1,0 +1,28 @@
+{
+  "now": "2026-10-21T12:00:00.000Z",
+  "policy": {
+    "maxBudgetUsdc": 50,
+    "ttlMs": 300000,
+    "scopes": {
+      "read.registry": ["https://lax.kognai.ai/registry/"],
+      "post.bid": ["https://lax.kognai.ai/registry/jobs/"],
+      "pin.artifact": ["ipfs://bafy", "ar://"]
+    }
+  },
+  "intent": {
+    "action": "post.bid",
+    "resource": "https://lax.kognai.ai/registry/jobs/8e7860f8-70a1-4bb3-8c0d-5b5f0a6f0001/bids",
+    "budgetUsdc": 40,
+    "nonce": "9f2c4e1a7b3d8065",
+    "issuedAt": "2026-10-21T11:59:30.000Z"
+  },
+  "cases": [
+    { "name": "C1 a declared bid inside scope is accepted", "expect": "OK" },
+    { "name": "C2 an action outside the allowlist is refused", "expect": "INTENT_ACTION", "variant": "unknown_action" },
+    { "name": "C3 a resource outside the action scope is refused", "expect": "INTENT_SCOPE", "variant": "out_of_scope" },
+    { "name": "C4 a budget above the cap is refused", "expect": "INTENT_BUDGET", "variant": "over_budget" },
+    { "name": "C5 a zero budget is refused", "expect": "INTENT_BUDGET", "variant": "zero_budget" },
+    { "name": "C6 a replayed nonce is refused", "expect": "INTENT_REPLAY", "variant": "replay" },
+    { "name": "C7 an expired intent is refused", "expect": "INTENT_STALE", "variant": "stale" }
+  ]
+}
